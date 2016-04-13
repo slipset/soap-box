@@ -55,7 +55,7 @@ Content-type: text/xml; charset=utf-8
 
 ## Installation
 
-	$ git clone
+	$ git clone git@github.com:slipset/soap-box.git
 
 ## Usage
 
