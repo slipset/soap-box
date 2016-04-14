@@ -1,7 +1,7 @@
 (ns soap-box.server
-    (:import (javax.jws
-                    WebService
-                    WebParam)
+    (:import [javax.jws
+              WebService
+              WebParam]
      javax.xml.ws.Endpoint)
     (:require [clojure.tools.logging :as log])
     (:gen-class))
@@ -35,22 +35,16 @@
 ;; correct order.
 (deftype ^{WebService {:targetNamespace "http://github.com/slipset/soap-box/"}} DivisorWS []
   IDivisorWS
-  (^Long divide [this
-                 ;; This is equivalent to java
-                 ;; @WebParam(name = "numerator")
-                 #^{WebParam {:name "numerator"}}
+  (divide [this
+           ;; This is equivalent to java
+           ;; @WebParam(name = "numerator")
+           #^{WebParam {:name "numerator"}}
+           numerator
 
-                 ;; This is equivalent to java
-                 ;; Integer numerator
-                 ^Integer numerator
-
-                 ;; This is equivalent to java
-                 ;; @WebParam(name = "denominator")
-                 #^{WebParam {:name "denominator"}}
-
-                 ;; This is equivalent to java
-                 ;; Integer denominator
-                 ^Integer denominator]
+           ;; This is equivalent to java
+           ;; @WebParam(name = "denominator")
+           #^{WebParam {:name "denominator"}}
+           denominator]
    (log/info "dividing" numerator "by" denominator)
    (log/spyf :info "The answer is %d" (/ numerator denominator))))
 
@@ -62,7 +56,7 @@
     (if-not (nil? @endpoint)
       (.stop @endpoint))
     (log/info "Publishing DivisorWSService at" url)
-    (log/info "wsdl is located at" (str url "?wsdl"))
+    (log/info "wsdl is located at " (str url "?wsdl"))
     (reset! endpoint
             ;; here the endpoint is published
             (Endpoint/publish url (DivisorWS.)))))
