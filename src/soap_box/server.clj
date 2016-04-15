@@ -45,8 +45,8 @@
            ;; @WebParam(name = "denominator")
            #^{WebParam {:name "denominator"}}
            denominator]
-   (log/info "dividing" numerator "by" denominator)
-   (log/spyf :info "The answer is %d" (/ numerator denominator))))
+    (log/info "dividing" numerator "by" denominator)
+    (log/spyf :info "The answer is %d" (/ numerator denominator))))
 
 (def endpoint (atom nil))
 
