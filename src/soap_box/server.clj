@@ -38,12 +38,12 @@
   (divide [this
            ;; This is equivalent to java
            ;; @WebParam(name = "numerator")
-           #^{WebParam {:name "numerator"}}
+           ^{WebParam {:name "numerator"}}
            numerator
 
            ;; This is equivalent to java
            ;; @WebParam(name = "denominator")
-           #^{WebParam {:name "denominator"}}
+           ^{WebParam {:name "denominator"}}
            denominator]
     (log/info "dividing" numerator "by" denominator)
     (log/spyf :info "The answer is %d" (/ numerator denominator))))
